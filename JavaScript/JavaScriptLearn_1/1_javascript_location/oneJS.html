@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript_location</title>
+    <!--1、可以将js代码编写到外部js文件中,然后通过script标签引入-->
+    <!--2、写到外部文件中可以在不同页面中同时引用，也可以利用到浏览器的缓存机制，推荐使用这种方式-->
+    <!--3、script标签一旦引入外部文件了，就不能编写代码了，即使编写了浏览器也会忽略-->
+    <script src="javascript.js"></script>
+    <!--4、如果需要则可以在创建一个新的script标签用于编写内部代码-->
+    <script>
+        var a = prompt("提示框弹出，请输入一个值");
+        alert("I'm inner script tag");
+        document.write("output in the Tag_body");
+        console.log("output in the Console_log");
+    </script>
+</head>
+<body>
+    <!--5、可以将js代码编写到标签onclick属性中,当我们点击按钮时,js代码才执行-->
+    <!--6、虽然可以写在标签属性中，但是他们属于结构与行为耦合，不方便维护，不推荐使用-->
+    <button onclick="alert('js_click属性alert显示')">点我一下One</button>
+    <!--7、可以将js代码写在超链接的href属性中,这样当点击超链接时，会执行js代码 -->
+    <a href="javascript:alert('js_href属性alert显示');">点我一下Two</a>
+    <a href="javascript:;">点我一下Three</a>
+</body>
+</html>

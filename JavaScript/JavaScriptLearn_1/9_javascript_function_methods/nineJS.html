@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_function_methods</title>
+		<script>
+			//call()和apply()
+			function fun(){
+				console.log("我是fun函数");
+				console.log(this);
+			}
+			var obj = {
+				'name': 'obj',
+				sayName:function(){
+					alert(this.name);
+				}
+			};
+			var obj2 = {'name': 'obj2'};
+			fun.call(obj);  //this是obj
+			fun.apply(obj2);   //this是obj2
+			fun();   //this是window
+			obj.sayName();  //this是obj
+			obj.sayName.apply(obj2);  //this是obj2
+			
+			function fun1(a, b){
+				console.log("a=" + a);
+				console.log("b=" + b);
+			}
+			fun1.call(obj,2,3);  //call()方法可以将实参在对象之后依次传递
+			fun1.apply(obj, [2,3]);  //apply()方法需要将实参封装到一个数组中统一传递
+		
+			function fun3(){
+				console.log(arguments);
+				//检查是否是数组
+				console.log(arguments instanceof Array);
+				console.log(Array.isArray(arguments));
+				console.log(arguments.length);
+				console.log(arguments[1]);
+				console.log(arguments.callee==fun3);
+			}
+			fun3("hello", true)
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript_conditions</title>
+    <script>
+        var a = 10;
+        if(a > 10 && a <= 20){
+            alert("a比10大");
+            alert("将这条放在代码块，才会在if中执行，否则一直执行");
+        }
+        var age = 60
+        if(age >=60){
+            alert("你已经退休了");
+        }else if(age >=30){
+            alert("中年");
+        }else{
+            alert("成年");
+        }
+        var score = prompt("请输入小明的期末成绩");
+        if(score > 100 || score < 0 || isNaN(score)){
+            alert("数据不合法");
+        }else{
+            alert("数据合法");}
+
+        var num1 = + prompt("这个+代表把string类型转换为number类型")
+        alert(typeof num1 + "类型")
+
+        var num = 3;
+        switch(num){
+            case 1:
+                console.log("一");
+                break;
+            case 3:
+                console.log("三")
+                break;
+            case "abc":
+                console.log("非法数字")
+                break;
+            default:
+                console.log("非法数字")
+                break;
+        }
+
+        var score = 55;
+        switch(parseInt(score/10)){
+            case 10:
+            case 9:
+            case 8:
+            case 7:
+            case 6:
+                console.log("合格");
+            default:
+                console.log("不合格");
+                break;
+        }
+
+        switch(true){
+            case score >= 60:
+                console.log("合格");
+                break;
+            default:
+                console.log("不合格");
+                break;
+        }
+
+        var i=0;
+        while(i < 3){
+            alert(i);
+            document.write(i++ + "<br />")
+        }
+
+        do{
+            document.write(i++ + "<br />");
+        }while(i <= 3);
+
+        var sum = 0;
+        for(var i=0; i<100; i++){
+            if(i%2 != 0){
+                sum = sum+i;
+            }
+        }
+
+         for(var i=0; i<5; i++){
+            for(var j=0; j<5-i; j++){
+                document.write("*&nbsp; &nbsp; &nbsp;");
+            }
+             document.write("<br />");
+         }
+
+         for(var i=1; i<=9; i++){
+            for(var j=1; j<=i; j++){
+                document.write(j+"*"+i+"="+i*j+"&nbsp;&nbsp;&nbsp;")
+            }
+            document.write("<br />");
+         }
+
+            for(var i=1; i<=9; i++){
+            for(var j=1; j<=i; j++){
+                document.write("<span>" +j+"*"+i+"="+i*j+"</span>")
+            }
+            document.write("<br />");
+         }
+
+         outer:        //label标签
+         for(var i=1; i<=Math.sqrt(9); i++){
+            console.log("外层循环"+i)
+            for(var j=1; j<=i; j++){
+               break outer;
+               console.log("内层循环"+j)
+            }
+         }
+    </script>
+    <style>
+        body{
+            width:2000px;
+        }
+        span{
+            display: inline-block;
+            width:80px;
+        }
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

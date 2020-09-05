@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript_object</title>
+    <script>
+        var obj = new Object();  //创建一个对象
+        obj.name = "孙悟空";  //为对象添加一个name属性
+        obj["123"] = 789;  //为对象创建一个123的属性
+        obj.gender = "男";
+        console.log(obj.name);  //读取对象属性
+        obj.name = "tom";  //修改对象的属性
+        delete obj.name;  //删除对象的属性
+        console.log(obj);
+
+        var obj2 = new Object();
+        obj2["test"] = obj;
+        console.log(obj2["test"].gender);
+
+        console.log("test" in obj2);   //检查obj2是否有test属性
+
+        //基本数据类型
+        var a=123;
+        var b=a;
+        a++;
+        console.log("a=" +a);
+        console.log("b=" +b);
+
+        //引用数据类型
+        var obj3 = new Object();
+        obj3.name = 'hai';
+        var obj4 = obj3;
+        obj3.name = 'wao';
+        console.log(obj3);
+        console.log(obj4);
+
+        obj4 = null;
+        console.log(obj3);  //对象
+        console.log(obj4);  //null
+
+        var obj = {};
+        obj.name = "孙悟空";
+        console.log(obj.name);
+
+        var obj5 = {
+            name:'猪八戒',
+            "age":28,
+            gender:'男',
+            test:{'name':'沙和尚'}
+            };
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

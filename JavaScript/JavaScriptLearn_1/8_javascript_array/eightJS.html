@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_array</title>
+		<script>
+			var arr=new Array();
+			arr[0] = 10;
+			arr[1] = 30;
+			console.log(arr[0]);
+			console.log('连续数组为元素个数' + arr.length)
+			// arr[10] = 40;
+			//console.log('非连续数组为最大索引+1' +　arr.length)
+			arr.length = 3; 
+			arr[2] = 30;
+			arr[3] = 30;
+			console.log(arr);
+			//向数组的最后一个位置添加元素
+			arr[arr.length] = 70;
+			arr[arr.length] = 80;
+			arr[arr.length] = 90;
+			console.log(arr);
+			//使用字面量创建数组
+			var arr = [];
+			var arr = [1,2,3,4,5,10];
+			console.log(arr);
+			//构造函数创建数组
+			var arr = new Array(10, 30, 40, 9);
+			console.log(arr);
+			arr2 = new Array(10); //只有一个参数代表创建长度为10的数组
+			//数组中的元素可以是任意的数据类型
+			arr = ["hello", {"name":"孙悟空"}, 9, true, function(){}, [3,2,4]],
+			console.log(arr);
+			arr[4]();
+			//数组的方法
+			result = arr.push("唐申", "沙和尚")
+			console.log(arr);
+			console.log("result=" + result);
+			result = arr.pop();
+			console.log(arr);
+			console.log("result=" + result);
+			arr.unshift("牛魔王", "二郎神");
+			console.log(arr);
+			arr.shift();
+			console.log(arr);
+			//数组遍历
+			var arr = ["孙悟空", "猪八戒", "沙和尚", "halern", "刘明"]
+			for(var i=0;i<arr.length;i++){
+				console.log(arr[i]);
+			}
+			//forEach()方法需要一个函数作为参数
+			arr.forEach(function(value, index, obj){
+				console.log("hello" + value);
+				console.log("index" + index);
+				console.log("object" + obj);
+			});
+			//slice()，可以用来从数组中提取指定元素，slice(start, end)	
+			var result = arr.slice(0,2);
+			console.log(result);
+			result = arr.slice(2);  //可以省略第二个参数
+			console.log(result);
+			result = arr.slice(1,-1);  //也可以是负索引
+			console.log(result);
+			
+			//splice() 用于删除数组中指定元素
+			var result = arr.splice(1,2,"牛魔王", "替换王");
+			console.log('现在数组：' + arr);
+			console.log('删除元素：' + result);
+			
+			//删除重复元素
+			var arr = [11,2,2, 6, 3, 9, 2, 7]
+			for(var i=0;i<arr.length;i++){
+				console.log(arr[i]);
+				for(var j=i+1; j<arr.length; j++){
+					if(arr[i] == arr[j]){
+						arr.splice(j,1);
+						j--; 
+					}
+				}
+			}
+			console.log(arr);
+			
+			//concat() 可以连接两个或多个数组
+			arr2 = ["ha", "df", "mn"];
+			arr3 = ["王二", "李三", "码子"];
+			var result = arr.concat(arr2,arr3,"牛魔王");
+			console.log(result);
+			
+			//join() 该方法可以将数组转换为一个字符串
+			result = arr.join('@');
+			console.log(result);
+			console.log(typeof result);
+			
+			//reverse();该方法会直接影响原数组
+			arr.reverse();
+			console.log(arr);
+			
+			//sort() 排序
+			arr.sort();
+			console.log(arr);
+			arr.sort(function(a,b){
+				// if(a>b){
+				// 	return 1;
+				// }else{
+				// 	return -1;
+				// }
+				return a-b;
+			})
+			console.log(arr);
+				
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript_this</title>
+    <script>
+        function fun(){
+            console.log(this);
+            console.log(this.name);
+        }
+
+        var obj = {
+            name:"孙悟空",
+            sayName:fun,
+        };
+
+        var obj2 = {
+            name:"沙和尚",
+            sayName:fun,
+        };
+
+        var name="全局name的属性";
+        obj.sayName();  //以方法形式调用，this是调用方法的对象
+        fun();  //以函数形式调用，this是window
+
+        var obj3 = {
+            name:"小哪吒",
+            age:18,
+            gender:"男",
+            sayName:function(){
+                alert(this.name);
+            },
+        };
+        obj3.sayName;
+
+        //使用工厂方法创建对象
+        function createPerson(name){
+            var obj = new Object();
+            obj.name = name,
+            obj.gender = "男",
+            obj.sayName = function(){
+                alert(this.name);
+            };
+            return obj;
+        }
+        var obj4 = createPerson("敖斌");
+        console.log(obj4);
+		
+		//构造函数
+		function Person(age){
+			this.name = "构造函数名字";
+			this.age = 18;
+			this.gender = "男";
+			//this.sayName = fun9;
+		}
+		//将sayName方法在全局作用域中定义,但很不安全
+		/* function fun9(){
+		    alert(this.name);
+		}; */
+		//向原型中添加sayName方法
+		Person.prototype.sayName = function(){
+                alert("大家好，我是" +　this.name);
+         };
+		//创建一个Person的实例
+		var per = new Person(25);
+		console.log(per);
+		per.sayName();
+		console.log(per instanceof Person);  //instanceof可以检查一个对象是否是一个类的实例
+		console.log(per instanceof Object);
+		
+		//介绍原型
+		function MyClass(){
+			
+		}
+		//向MyClass的原型中添加属性a
+		MyClass.prototype.name = "我是原型中的属性name";
+		//向MyClass的原型中添加一个方法
+		MyClass.prototype.sayHello = function(){
+			alert("hello");
+		};
+		var mc = new MyClass();
+		console.log(MyClass.prototype);
+		console.log(mc.__proto__);  
+		console.log(mc.__proto__==MyClass.prototype);
+		console.log(mc.name);
+		mc.sayHello();
+		// 使用in检查对象中是否含有某个属性时,如果对象中没有但是原型中有,也会返回true
+		console.log("name" in mc); 
+		
+		//可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性
+		//使用该方法只有当对象自身中含有属性时,才会返回true
+		console.log(mc.hasOwnProperty("age"));
+		console.log(mc.__proto__.hasOwnProperty("hasOwnProperty"));
+		console.log(mc.__proto__.__proto__.hasOwnProperty("hasOwn"));
+		console.log(mc.__proto__.__proto__.__proto__);  //null
+		
+		//toString介绍
+		function Person1(name,age,gender){
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
+		var per1 = new Person1("Shirmay1", 22, "女");
+		console.log(per1); 
+		//当我们直接在页面中打印一个对象时，事实上输出的是对象的toString()方法的返回值
+		var result = per1.toString();
+		console.log("result=" + result);
+		console.log(per.__proto__.__proto__.hasOwnProperty("toString"));
+		
+		//如果我们希望在输出对象时不输出[object object]，可以为对象添加一个toString()方法
+		per1.toString = function(){
+			return "我是一个快乐的小Person";
+		};
+		var result = per1.toString();
+		console.log("result=" + result);
+		console.log(per1);
+		
+		//垃圾回收
+		var obj2 = new Object();
+		obj = null;
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

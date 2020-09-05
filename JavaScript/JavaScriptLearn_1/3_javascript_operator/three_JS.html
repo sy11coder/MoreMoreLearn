@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript_operator</title>
+    <script>
+        result = 1 + null;  //0
+        result = 2 + NaN;  //NaN
+        result = "你好"+"大哥";  //"你好大哥"
+        result = 123 + "1";  //"1231"
+        console.log("c="+ result);  //"c=1231"
+        result = 2*undefined;  //NaN
+        result = 9%2;  // 1
+        var a = 123;
+        a = "18";
+        a = +a;  //Number类型，18
+
+        var a=1;
+        a++;  //a++为1；a为2
+        ++a;  //++a为3；a为3
+        var d=20;
+        console.log(d++); //20
+        console.log(++d);  //22
+
+        var a = false;
+        a = !a;  //true
+        var a == "hello";
+        a = !!a;  //转换为a的布尔值true
+        var result = true && false;  //false
+
+        result = 5>10; //true
+        console.log(10 < "hello");  //false
+        console.log("11" < "5");  //true
+        console.log("1" == 1);  //true
+        console.log("1" === 1);  //false
+        console.log(null == 0);  //false
+        console.log(true == "1");  //true
+        console.log(undefined == null);  //true
+        console.log(NaN  == NaN);  //false
+        var b = NaN;
+        console.log(isNaN(b));  //true
+
+        console.log("\u2620");
+
+        var a = 10;
+        var b = 20;
+        a >b ? alert("a大"):alert("b大");
+        var max = a > b ? a: b;
+
+        {
+            alert("hello");
+            console.log("你好");
+            document.write("语句代码块");
+        }
+
+    </script>
+</head>
+<body>
+<!--在网页中使用Unicode编码，需用&#编码，并将Unicode转换为十进制-->
+    <h1 style="font-size: 200px;">&#9760;</h1>
+</body>
+</html>

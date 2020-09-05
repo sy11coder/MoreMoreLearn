@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height:100px;
+				background-color: red;
+				position:absolute; //开启box1的绝对定位
+			}
+			#box2{
+				width: 100px;
+				height:300px;
+				background-color: #BBFFAA;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//使div可以跟随鼠标移动
+				var box1 = document.getElementById("box1");
+				document.onmousemove = function(event){
+					//解决兼容问题
+					event = event||window.event;
+					//获取滚动条滚动的距离
+					//chrome认为浏览器的滚动条是body的,可以通过body.scrollTop来获取
+					//火狐等浏览器认为浏览器的滚动条是html的
+					var st = document.body.scrollTop || document.documentElement.scrollTop;
+					var sl = document.body.scrollLeft || document.documentElement.scrollLeft;
+					//获取到鼠标的坐标,clientX和clientY总是获取相对于可见窗口的坐标
+					//div偏移量是相对于整个页面
+					//pageX和pageY是相对于整个页面,但在IE8不支持
+					var left = event.pageX;
+					var top = event.pageY;
+					//设置偏移量,只对开启定位的有用
+					box1.style.left = left + "px";  //left + sl + "px"
+					box1.style.top = top + "px"; //top + st + "px"
+				};
+				var box2 = document.getElementById("box2");
+				box2.onmousemove = function(event){
+					event = event || window.event;
+					event.cancleBubble = true;
+				};
+			}
+		</script>
+	</head>
+	<body style="height:1000px; width:2000px;">
+		<div id="box2" style="width:500px"; height:500px; background-color:#bfa;></div>
+		<div id="box1"></div>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height:100px;
+				background-color: red;
+				position:absolute; //开启box1的绝对定位
+			}
+			#box2{
+				width: 100px;
+				height:100px;
+				background-color: yellow;
+				position:absolute; //开启box1的绝对定位
+				left:200px;
+				top:200px;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//拖拽box1元素
+				//1鼠标在被拖拽元素上按下时,开始拖动onmousedown
+				//2当鼠标移动时被拖拽元素跟随鼠标移动onmousemove
+				//3当鼠标松开时,被拖拽元素固定在当前位置onmouseup
+				var box1 = document.getElementById("box1");
+				box1.onmousedown = function(event){
+					event = event || window.event;
+					//div的偏移量,鼠标.clientX - 元素.offsetLeft
+					//div的偏移量,鼠标.clientY - 元素.offsetTop
+					var ol = event.clientX - box1.offsetLeft;
+					var ot = event.clientY - box1.offsetTop;
+					
+					document.onmousemove = function(event){
+						event = event || window.event;
+						//获取鼠标的坐标
+						var left = event.clientX -ol;
+						var top = event.clientY -ot;
+						//设置偏移量,只对开启定位的有用
+						box1.style.left = left + "px";  //left + sl + "px"
+						box1.style.top = top + "px"; //top + st + "px"
+					}
+					//为鼠标绑定鼠标松开事件
+					document.onmouseup = function(){
+						document.onmousemove = null;
+						//取消document的onmouseup事件
+						document.onmouseup = null;
+					};
+					//当我们拖拽一个网页中的内容时,浏览器会默认去搜索引擎中搜索内容
+					//此时会导致拖拽功能异常,这个是浏览器提供的默认行为
+					//如果不希望出现这个行为,就return false
+					return false
+				};
+			};
+		</script>
+	</head>
+	<body>
+		我是一段文字
+		<div id="box1"></div>
+		<div id="box2"></div>
+	</body>
+</html>

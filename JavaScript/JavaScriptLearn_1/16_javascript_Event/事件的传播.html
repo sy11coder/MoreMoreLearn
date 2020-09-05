@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box1{
+				width:300px;
+				height:300px;
+				background-color: greenyellow;
+			}
+			#box2{
+				width:200px;
+				height:200px;
+				background-color: yellow;
+			}
+			#box3{
+				width:150px;
+				height:150px;
+				background-color: skyblue;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var box1 = document.getElementById("box1");
+				var box2 = document.getElementById("box2");
+				var box3 = document.getElementById("box3");
+				//事件的传播
+				bind(box1, "click",  function(){alert("我是box1的响应函数");});
+				bind(box2, "click",  function(){alert("我是box2的响应函数");})
+				bind(box3, "click",  function(){alert("我是box3的响应函数");})
+			}
+			function bind(obj, eventStr, callback){
+				if(obj.addEventListener){
+					//大部分浏览器
+					obj.addEventListener(eventStr, callback, false);
+				}else{
+					//this是谁由调用方式决定,
+					//IE8以下
+					obj.attachEvent("on" + eventStr, function(){
+						//在匿名函数中调用回调函数
+						callback().call(obj);
+					});
+				}	
+			}
+					
+		</script>
+	</head>
+	<body>
+		<div id="box1">
+			<div id="box2">
+				<div id="box3"></div>
+			</div>
+		</div>
+	</body>
+</html>

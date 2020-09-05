@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height:100px;
+				background-color: red;
+				position:absolute; //开启box1的绝对定位
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//当鼠标滚轮向下滚动时,box1变长,当滚轮向上滚动时,box1变短
+				var box1 = document.getElementById("box1");
+				//onmousewheel鼠标滚轮滚动事件
+				box1.onmousewheel = function(event){
+					//wheelDelta获取鼠标滚动方向,向上滚120,向下滚-120
+					// event.wheelDelta; //谷歌
+					// event.detail; //向上滚-3;向下滚3火狐;
+					if(event.wheelDelta>0 || event.detail<0){
+						box1.style.height = box1.clientHeight - 10 + "px";
+					}else{
+						box1.style.height = box1.clientHeight + 10 + "px";
+					}
+					//IE8和火狐取消默认行为
+					// event.preventDefault && event.preventDefault();
+					//当滚轮滚动时,如果浏览器有滚动条,滚动条会随之滚动,这是浏览器的默认行为
+					return false;
+				};
+				//为火狐绑定滚轮事件
+				// bind(box1, "DOMMouseScroll", box1.onmousewheel)
+			};
+		</script>
+	</head>
+	<body style="height:2000px;">
+		<div id="box1"></div>
+	</body>
+</html>

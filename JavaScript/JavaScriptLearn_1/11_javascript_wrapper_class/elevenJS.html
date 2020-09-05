@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_wrapper_class</title>
+		<script>
+			// 创建一个Number类型的对象, num=3
+			var num = new Number(3);
+			var num2 = new Number(3);
+			var str= new String("hello");
+			var bool = new Boolean(true);
+			console.log(typeof bool);
+			
+			//向num中添加一个属性
+			num.hello = "abcdefg";
+			console.log(num == num2);  //对象地址不一样,不相等
+			
+			var s=123;
+			s = s.toString();
+			console.log(s);
+			console.log(typeof s);
+			s.hello = "你好";
+			console.log(s.hello);  //undefined
+			
+		</script>
+	
+	</head>
+	<body>
+	</body>
+</html>

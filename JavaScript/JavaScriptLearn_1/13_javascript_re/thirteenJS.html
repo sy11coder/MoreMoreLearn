@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_re</title>
+		<script>
+			var reg = new RegExp("a", "i");  //使用构造函数创建更加灵活
+			console.log(reg.test("Abcde"));
+	
+			var reg1 = /a/i;  //使用字面量创建更加简单
+			console.log(reg1.test("Abcde"));
+			//创建一个正则表达式,检查一个字符串是否有a或b
+			//[ab]  == a|b
+			reg = /a|b|c/;
+			reg = /[a-z]/;  //[a-z]  [A-Z]  [A-z]
+			reg = /[a[bde]z]/;
+			reg = /[^0-9]/;  //[^ ]除了0-9
+			//split默认是全局匹配
+			var str = "1sdfA355gd3Adfabc";
+			var result = str.split(/[a-z]/);
+			console.log(result);
+			//search()不可以全局匹配,即使设置全局匹配也没用
+			var result = str.search("abc");
+			var result = str.search(/a[bef]c/);  //abc,aec
+			console.log(result);
+			//match()可选择全局匹配
+			var result = str.match(/[A-z]/gi);
+			console.log(result);
+			//replace()可选择全局匹配
+			result = str.replace(/a/gi, "");
+			console.log(result);
+			// {}通过量词设置内容出现次数
+			reg = /a{3}/;
+			console.log(reg1.test("Abcaaade"));
+			reg = /(ab){3}/;
+			console.log(reg1.test("Abcabababde"));
+			reg = /ab{1,3}c/;
+			console.log(reg1.test("Abcabcababde"));
+			reg = /^a/;
+			console.log(reg1.test("abcabcababde"));
+			reg = /$a/;
+			console.log(reg1.test("abcabcababdea"));
+			reg = /^a$/;
+			console.log(reg1.test("adddea"));
+			
+			var phone= "135736895428";  //手机号以1开头,第二位是3-9;
+			reg = /^1[3-9][1-9]{9}$/;
+			console.log(reg.test(phone));
+			
+			//检查字符串中是否含有.
+			reg = /\./;
+			console.log(reg.test("abcabcababdea"));
+			
+			//检查字符串中是否含有单词child
+			reg = /\bchild\b/;
+			console.log(reg.test("hello child"));
+			
+			// var str = prompt("请输入你的用户名");
+			str = "   he llo  ";
+			str = str.replace(/^\s*|\s*$/g, "");
+			console.log(str);
+			
+			//正则表达式邮件
+			var emailReg = /^\w{3,}(\.\w+)*a[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+			var email = "aba.hello@acf.com";
+			console.log(emailReg.test(email));
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

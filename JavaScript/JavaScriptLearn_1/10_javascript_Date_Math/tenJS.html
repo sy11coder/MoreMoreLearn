@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_Date_Math</title>
+		<script>
+			var d = new Date();
+			console.log(d);
+			var d1 = new Date("12/03/2019 11:10:03");
+			console.log(d1);
+			var date1 = d1.getDate(); //获取当前对象是几日
+			console.log("date = " + date1);
+			var day1 = d1.getDay(); //获取当前对象是周几
+			console.log("day = " + day1);
+			var month1 = d1.getMonth(); //获取当前对象是几月
+			console.log("month = " + month1);
+			var year1 = d1.getFullYear(); //获取当前对象年份
+			console.log("year = " + year1);
+			var time1 = d1.getTime(); //获取时间戳
+			console.log(time1);
+			time = Date.now(); //获取当前时间戳
+			console.log(time);
+			
+			console.log(Math.PI);  //常量pi
+			console.log(Math.abs(-1));  //绝对值
+			console.log(Math.ceil(1.1));  //向上取整
+			console.log(Math.floor(1.99)); //向下取整
+			console.log(Math.round(1.4)); //四舍五入
+			console.log(Math.random());  //生成0-1之间的随机数
+			console.log(Math.round(Math.random()*10));  //生成0·10的随机数
+		    console.log(Math.max(10, 20, 30));
+			console.log(Math.min(10, 20, 30));
+			console.log(Math.pow(2, 3));   //幂
+			console.log(Math.sqrt(4));   //开方
+		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

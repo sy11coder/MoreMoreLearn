@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_DOM</title>
+		<script>
+			window.onload = function(){
+				//获取body标签
+				var body = document.body;
+				console.log(body);
+				//获取html根标签
+				var html = document.documentElement;
+				console.log(html);
+				// document.all代表页面所有元素
+				var all = document.all;
+				console.log(all.length);
+				all = document.getElementsByTagName("*");
+				console.log(all.length);
+				//根据元素class属性值查询一组元素节点对象
+				var box1 = document.getElementsByClassName("box1");
+				console.log(box1.length);
+				//获取box1的div;css选择器
+				var div = document.querySelector(".box1 div");	
+				console.log(div.innerHTML);
+				var box = document.querySelectorAll(".box1");
+				console.log(box.length);
+				
+				//创建节点<li>广州</li>
+				myClick("btn01", function(){
+					var li = document.createElement("li");
+					var gzText = document.createTextNode("广州")
+					li.appendChild(gzText);
+					var city = document.getElementById("city");
+					city.appendChild(li);
+				});
+				//将"广州"节点插入到#bj前面
+				myClick("btn02",function(){
+					var li = document.createElement("li");
+					var gzText = document.createTextNode("广州");
+					li.appendChild(gzText);
+					var bj = document.getElementById("bj");
+					var city = document.getElementById("city");
+					city.insertBefore(li, bj);
+					
+				});
+				//广州节点替换北京节点
+				myClick("btn03",function(){
+					var li = document.createElement("li");
+					var gzText = document.createTextNode("广州");
+					li.appendChild(gzText);
+					var bj = document.getElementById("bj");
+					var city = document.getElementById("city");
+					city.replaceChild(li, bj);
+				});
+				//删除bj节点
+				myClick("btn04",function(){
+					var bj = document.getElementById("bj");
+					// var city = document.getElementById("city");
+					// city.removeChild(bj);
+					bj.parentNode.removeChild(bj);
+				});
+				//读取city内的html代码
+				myClick("btn05",function(){
+					var city = document.getElementById("city");
+					alert(city.innerHTML);
+				});
+				//设置北京HTML代码
+				myClick("btn06",function(){
+					var bj = document.getElementById("bj");
+					bj.innerHTML = "苏州";
+				});
+				
+				//使用innerHTML也可以完成DOM的增删查改相关操作,
+				//一般会两种方式结合使用
+				myClick("btn07",function(){
+					var city = document.getElementById("city");
+					// city.innerHTML +="<li>广州</li>";
+					var li = document.createElement("li");
+					li.innerHTML ="<li>广州</li>";
+					city.appendChild(li);
+				})
+				
+				function myClick(idStr, fun){
+					var btn = document.getElementById(idStr);
+					btn.onclick = fun;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box1">
+			<div>box1的div</div>
+		</div>
+		<div class="box1">
+			<div>box1的第二个div</div>
+		</div>
+		<ul id="city">
+			<li id="bj">北京</li>
+			<li>上海</li>
+			<li>东京</li>
+		</ul>
+		<div><button id="btn01">创建广州节点</button></div>
+		<div><button id="btn02">广州节点到北京节点前面</button></div>
+		<div><button id="btn03">使用广州节点替换北京节点</button></div>
+		<div><button id="btn04">删除北京节点</button></div>
+		<div><button id="btn05">读取html代码</button></div>
+		<div><button id="btn06">设置bj的HTML代码</button></div>
+		<div><button id="btn07">创建广州节点</button></div>
+	</body>
+</html>

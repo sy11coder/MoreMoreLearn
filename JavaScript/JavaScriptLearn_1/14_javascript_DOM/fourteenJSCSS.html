@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width:100px;
+				height:100px;
+				background-color:red;
+				padding:10px;
+				border:10px solid yellow;
+			}
+			#box4{
+				width:200px;
+				height:300px;
+				background: #ADFF2F;
+				overflow: auto;
+			}
+			#box5{
+				width:250px;
+				height:400px;
+				background: royalblue;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var box1 = document.getElementById("box1");
+				//使用JS修改元素的样式
+				var btn01 = document.getElementById("btn01");
+				btn01.onclick = function(){
+					//如果css中含有-,在js中不合法;需丢掉-,然后-后面的字母大写
+					//我们通过style属性设置的样式都是内联样式,而内联样式有比较高的优先级,所以通过JS修改的样式往往会立即显示
+					//但是如果在样式中写了!important,则此时样式会有最高的优先级,即通过js不能覆盖该样式,此时将会导致JS修改样式失效
+					box1.style.width = "300px";
+					box1.style.height = "300px";
+					box1.style.backgroundColor = "yellow";
+				};
+				//读取元素的样式,都是只读的不能修改
+				var btn02 = document.getElementById("btn02");
+				btn02.onclick = function(){
+					//通过style属性设置和读取的都是内联样式,无法读取样式表中的样式
+					console.log(box1.style.width);
+					//getComputedStyle()获取元素当前显示的样式,这个是window的方法,可以直接使用
+					var obj = getComputedStyle(box1, null);
+					console.log(obj.width);
+					alert(getStyle(box1, "backgroundColor"));
+				};
+				//用来获取指定元素的当前样式
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj, null)[name];
+					}else{
+						//IE8的方式
+						return obj.currentStyle[name];
+					}	
+	
+				}
+				//可见样式,返回数字
+				var btn03 = document.getElementById("btn03");
+				var box4 = document.getElementById("box4");
+				btn03.onclick = function(){
+					//clientWidth和clientHeight这两个属性可以获取元素的可见宽度和高度
+					//这些属性都是不带px的,返回的都是一个数字,可以直接进行计算
+					//会获取元素的宽度和高度,包括内容区和内边距
+					//只读,不能修改
+					alert(box1.clientWidth);
+					alert(box1.clientHeight);
+					//获取元素的整个宽度和高度,包括内容区/内边距和边框
+					alert(box1.offsetHeight);
+					alert(box1.offsetWidth);
+					//可以用来获取当前元素的定位父元素,会获取到离当前元素最近的开启了定位的祖先元素,如果所有的祖先元素都没有开启定位,则返回body
+					alert(box1.offsetParent);
+					//offsetLeft当前元素相对于其定位元素的垂直偏移量
+					//offsetTop当前元素相对于其定位元素的垂直偏移量
+					alert(box1.offsetLeft);
+					//scrollHeight获取元素整个滚动区域的高度
+					alert(box4.scrollHeight);
+					alert(box4.scrollWidth);
+					//scrollLeft可以获取水平滚动条的距离
+					alert(box4.scrollLeft);
+					alert(box4.scrollTop);
+					//当满足scrollHeight - scrollTop == clientHeight
+					//说明垂直滚动条滚动到底了
+					//当满足scrollWidth - scrollLeft == clientHeight
+					//说明水平滚动条滚动到底
+					alert(box4.scrollHeight - box4.scrollTop); 
+				};	
+				
+			};
+		</script>
+	</head>
+	<body>
+		<button id="btn01">修改样式</button>
+		<button id="btn02">读取样式</button>
+		<button id="btn03">可见样式</button>
+		<br/><br/>
+		<div id="box1"></div>
+		<br/><br/>
+		<div id="box4">
+			<div id="box5"></div>
+		</div>
+	</body>
+</html>

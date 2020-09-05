@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#info{
+				width:300px;
+				height:500px;
+				background-color: #bfa;
+				overflow: auto;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//当垂直滚动条滚动到底时,使表单项可用
+				//onscroll该事件会在元素的滚动条滚动时触发
+				var info = document.getElementById("info")
+				var inputs = document.getElementsByTagName("input")
+				//为info绑定一个滚动条滚动的事件
+				info.onscroll = function(){
+					if(info.scrollHeight-info.scrollTop == info.clientHeight){
+						inputs[0].disabled = false;
+						inputs[1].disabled = false;
+					}
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<h3>欢迎亲爱的用户注册</h3>
+		<p id="info">
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			亲爱的用户，请仔细阅读以下协议，如果你不阅读就别注册
+			
+		</p>
+		<!-- 如果为表单添加disabled，则表单项变成不可用状态 -->
+		<input type="checkbox" disabled="disabled"/>我已仔细阅读协议，一定遵守协议
+		<input type="submit" value="注册" disabled="disabled"/>
+		<button></button>
+	</body>
+</html>

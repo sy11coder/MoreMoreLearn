@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>javascript_string</title>
+		<script>
+			var str="Hrllo ahfadhe";
+			console.log(str.length);
+			console.log(str[3]);
+			var result = str.charAt(0); 
+			console.log(result);
+			result = str.charCodeAt(0);  //返回unicode编码
+			console.log(result);
+			result = String.fromCharCode(72);  //根据字符编码获取字符
+			console.log(result);
+			result = String.fromCharCode(0x2692);  //根据字符编码获取字符
+			console.log(result);
+			result = str.concat("你好", "哈哈哈");  //用来连接两个或多个字符串
+			console.log(result);
+			result = str.indexOf("h");  //检索一个字符串是否含有指定内容
+			console.log(result);
+			result = str.indexOf("h", 8);  //第二个参数指定开始查找位置
+			console.log(result);
+			result = str.lastIndexOf("h");  //与indexOf用法一致
+			console.log(result);
+			result = str.slice(0, 2); //从字符串中截取指定的内容
+			console.log(result);
+			result = str.substring(2, 0);  //自动调整参数位置
+			console.log(result);  
+			result = str.substr(2, 3); //截取3个
+			console.log(result); 
+			result = str.split(" ");  //拆分成数组
+			console.log(result); 
+			result = str.toUpperCase();  //大写
+			console.log(result);
+			result = str.toLowerCase();  //小写
+			console.log(result);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

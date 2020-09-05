@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>增删练习</title>
+		<link rel="stylesheet" type="text/css" href="ex_2_style/css.css" />
+		<script>
+			var delA = function(){
+				//点击哪个,this就是哪个
+				var tr = this.parentNode.parentNode;
+				var name = tr.getElementsByTagName("td")[0].innerHTML;
+				if (confirm("确认删除?"+ name)){
+					tr.parentNode.removeChild(tr);
+					}
+				return false;
+			};
+			window.onload = function(){
+				var allA = document.getElementsByTagName("a");
+				for(var i=0; i<allA.length; i++){
+					allA[i].onclick = delA;
+				}
+				//添加员工功能,点击按钮后将员工信息添加
+				var addEmpButton = document.getElementById("addEmpButton");
+				addEmpButton.onclick = function(){
+					var name = document.getElementById("empName").value;
+					var email = document.getElementById("email").value;
+					var salary = document.getElementById("salary").value;
+					//需要将获取到的信息添加到tr里面
+					var tr = document.createElement("tr");
+					tr.innerHTML = "<td>"+ name +"</td>" +
+								   "<td>"+ email +"</td>" +
+								   "<td>"+ salary +"</td>" +
+								   "<td><a href='javascript:;'>Delete</a></td>";
+					//获取刚刚添加的a元素
+					var a = tr.getElementsByTagName("a")[0];
+					a.onclick = delA;
+					//获取table
+					var employeeTable = document.getElementById("employeeTable");
+					var tbody = employeeTable.getElementsByTagName("tbody")[0];
+					tbody.appendChild(tr);
+				
+				};
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		<table id="employeeTable">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Salary</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>tom@tom.com</td>
+				<td>5000</td>
+				<td><a href="deleteEmp?id=001">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Bob</td>
+				<td>bob@tom.com</td>
+				<td>10000</td>
+				<td><a href="deleteEmp?id=002">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Jerry</td>
+				<td>jerry@tom.com</td>
+				<td>8000</td>
+				<td><a href="deleteEmp?id=003">Delete</a></td>
+			</tr>
+		</table>
+		<div id="formDiv">
+			<h4>添加新员工</h4>
+			<table>
+				<tr>
+					<td class="word">name: </td>
+					<td class="inp">
+						<input type="text" name="empName" id="empName" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word">email: </td>
+					<td class="inp">
+						<input type="text" name="email" id="email" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word">salary: </td>
+					<td class="inp">
+						<input type="text" name="salary" id="salary" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button id="addEmpButton" value="abc">
+							Submit
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

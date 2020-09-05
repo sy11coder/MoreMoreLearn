@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box1{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position:absolute;
+				left:0;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//用来获取指定元素的当前样式
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj, null)[name];
+					}else{
+						//IE8的方式
+						return obj.currentStyle[name];
+					}
+				}
+				var box1 = document.getElementById("box1");
+				//获取btn01
+				var btn01 = document.getElementById("btn01");
+				var btn02 = document.getElementById("btn02");
+				
+				var timer;
+				//点击按钮以后,使box1向右移动(left值增大)
+				btn01.onclick = function(){
+					move(box1, 800, 10);		
+				};
+				btn02.onclick = function(){
+					move(box1, 0, 10);							
+				};
+				function move(obj, target, speed){
+					clearInterval(timer);
+					var current = parseInt(getStyle(obj, "left"));
+					if(current>target){
+						speed = -speed;
+					}
+					//开启一个定时器,用来执行动画效果
+					timer = setInterval(function(){
+						var oldValue = parseInt(getStyle(obj, "left"));
+						//在旧值的基础上增加
+						var newValue = oldValue + speed;
+						if((speed < 0 && newValue < target) || (speed > 0 && newValue > target)){
+							newValue = target;
+						}
+						//将新值设置给box1
+						obj.style.left = newValue + "px";
+						if(newValue == target){
+							clearInterval(timer);
+						}
+					},30);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn01">点击按钮以后box1向右移动</button>
+		<button id="btn02">点击按钮以后box1向左移动</button>
+		
+		<br /> <br />
+		<div id="box1"></div>
+		<div style="width:0;height:1000px;border-left:1px black solid;position:absolute;left:800px;top:0;"></div>
+	</body>
+</html>

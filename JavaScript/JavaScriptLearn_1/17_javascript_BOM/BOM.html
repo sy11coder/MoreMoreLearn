@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			//由于历史原因,Navigator对象中的大部分属性都已经不能帮助我们识别浏览器了
+			//一般我们只会使用userAgent来判断浏览器的信息，userAgent是一个字符串，这个字符串中包含有用来描述浏览器信息的内容，不同的浏览器会有不同的userAgent
+			var ua = navigator.userAgent;
+			console.log(navigator.appName);
+			console.log(ua);
+			if(/Chrome/i.test(ua)){
+				alert("你是谷歌");
+			}else if(/firefox/i.test(ua)){
+				alert("你是火狐");
+			}else if(/msie/i.test(ua)){
+				alert("你是IE11以下的浏览器");
+			}else if("ActiveXObject" in window){
+				alert("你是IE11");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			var num = 1;
+			//开启一个定时器
+			// setInterval(function(){
+			// 	console.log(num++);
+			// }, 3000);
+			//延时调用,延时后执行一次
+			var timer= setTimeout(function(){
+				console.log(num++);
+			}, 3000);
+			//使用clearTimeout()来关闭一个延时调用
+			clearTimeout(timer);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

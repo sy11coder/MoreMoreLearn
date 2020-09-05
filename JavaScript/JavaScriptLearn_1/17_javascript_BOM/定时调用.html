@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			window.onload = function(){
+				var count = document.getElementById("count");
+				// //使count中的内容,自动切换
+				// for(var i=0; i<10; i++){
+				// 	count.innerHTML = i;
+				// }
+				//setInterval()定时调用,可以将一个函数,每隔一段事件执行一次,参数:1回调函数,该函数会每隔一段时间被调用一次,2每次调用间隔的事件,单位是毫秒;3返回值:返回一个Number类型的数据,这个数字用来作为定时器的唯一标识
+				var num=1;
+				var timer = setInterval(function(){
+					count.innerHTML = num++;
+					if(num == 11){
+						clearInterval(timer);
+					}
+				}, 500)
+				//clearIneterval()可以用来关闭一个定时器
+				//方法中需要一个定时器的标识作为参数,这样将关闭标识对应的定时器
+				// clearInterval(timer);
+			};
+		</script>
+	</head>
+	<body>
+		<h1 id="count">1</h1>
+	</body>
+</html>

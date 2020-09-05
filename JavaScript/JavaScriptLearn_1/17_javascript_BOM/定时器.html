@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box1{
+				width:100px;
+				height:100px;
+				background-color:red;
+				position:absolute;
+				left:0;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//用来获取指定元素的当前样式
+				function getStyle(obj,name){
+					if(window.getComputedStyle){
+						//正常浏览器
+						return getComputedStyle(obj, null)[name];
+					}else{
+						//IE8的方式
+						return obj.currentStyle[name];
+					}
+				}
+				var box1 = document.getElementById("box1");
+				//获取btn01
+				var btn01 = document.getElementById("btn01");
+				var timer;
+				//点击按钮以后,使box1向右移动(left值增大)
+				btn01.onclick = function(){
+					clearInterval(timer);
+					//开启一个定时器,用来执行动画效果
+					setInterval(function(){
+						var oldValue = parseInt(getStyle(box1, "left"));
+						//在旧值的基础上增加
+						var newValue = oldValue + 18;
+						if(newValue > 800){
+							newValue = 800;
+						}
+						//将新值设置给box1
+						box1.style.left = newValue + "px";
+						//当元素移动到800px,将其停止执行动画
+						if(newValue == 800){
+							clearInterval(timer);
+						}
+					},30);
+					
+					
+				};
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn01">点击按钮以后box1向右移动</button>
+		<br /> <br />
+		<div id="box1"></div>
+		<div style="width:0;height:1000px;border-left:1px black solid;position:absolute;left:800px;top:0;"></div>
+	</body>
+</html>

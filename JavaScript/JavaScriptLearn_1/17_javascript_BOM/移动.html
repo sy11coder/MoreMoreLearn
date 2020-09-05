@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#box1{
+				width: 100px;
+				height:100px;
+				background-color: red;
+				position:absolute; //开启box1的绝对定位
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				//创建一个变量,来表示移动的速度
+				var speed = 10;
+				//创建一个变量表示方向
+				var dir=0;
+				//开启一个定时器,来控制div的移动
+				setInterval(function(){
+					switch(dir){
+						case 37:
+							// alert("向左");
+							box1.style.left = box1.offsetLeft - speed + "px";
+							break;
+						case 39:
+							// alert("向右");
+							box1.style.left = box1.offsetLeft + speed + "px";
+							break;
+						case 38:
+							// alert("向上");
+							box1.style.top = box1.offsetTop - speed + "px";
+							break;
+						case 40:
+							// alert("向下");
+							box1.style.top = box1.offsetTop + speed + "px";
+							break;
+					}
+				},30);
+				//使div可以根据不同的方向键向不同的方向移动
+				document.onkeydown = function(event){
+					event = event || window.event;
+					//当用户按了ctr加速
+					if(event.ctrKey){
+						speed = 500;
+					}else{
+						speed = 10;
+					}
+					//使dir等于按键的值
+					dir = event.keyCode;
+				};
+				document.onkeyup = function(){
+					//设置方向等于0
+					dir=0;
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<input type="text"/>
+		<div id="box1"></div>
+		<!-- <div style="width:100px;height:100px;background-color: red;"></div> -->
+	</body>
+</html>

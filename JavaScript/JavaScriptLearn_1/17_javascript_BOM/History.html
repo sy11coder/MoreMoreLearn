@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			
+			window.onload = function(){
+				//获取按钮对象
+				var btn=document.getElementById("btn");
+				btn.onclick = function(){
+					//length可以获取当前访问链接的数量
+					// alert(history.length);
+					//back()可以用来回退到上一个页面,作用和浏览器的回退按钮一样,
+					// history.back();
+					//可以跳转到下一个页面,作用和浏览器的前进按钮是一样的
+					// history.forward();
+					//go()可以用来跳转到指定的页面,它需要一个整数作为参数,1表示向前跳转一个页面,2表示向前跳转两个页面,-1向后跳转一个页面,-2向后跳转两个页面
+					history.go(1);
+					
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<button id="btn">点我一下</button>
+		<h1>History</h1>
+	</body>
+</html>

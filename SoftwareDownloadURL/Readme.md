@@ -10,6 +10,7 @@
 ##### 10、[Git下载地址](https://www.git-scm.com/download/)
 ##### 11、[PotPlayer视频播放加速下载地址](https://daumpotplayer.com/download/)
 ##### 12、[Mitmproxy下载地址](https://www.mitmproxy.org/)
+##### 13、[Typora文本编辑器下载地址](https://www.typora.io/)
 ##### Mongodb客户端可视化MongoChef
 ##### Redis客户端可视化RedisManager
 ##### Mysql客户端可视化Navicat

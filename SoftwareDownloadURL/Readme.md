@@ -11,6 +11,9 @@
 ##### 11、[PotPlayer视频播放加速下载地址](https://daumpotplayer.com/download/)
 ##### 12、[Mitmproxy下载地址](https://www.mitmproxy.org/)
 ##### 13、[Typora文本编辑器下载地址](https://www.typora.io/)
+##### 14、[油猴插件下载地址](https://www.chrome666.com/chrome-extension/tampermonkey.html)
+##### 15、[Switchyomega管理代理下载地址](https://www.chrome666.com/chrome-extension/proxy_switchyomega.html)
+##### 16、[各种谷歌插件下载地址](https://www.chrome666.com/?s=)
 ##### Mongodb客户端可视化MongoChef
 ##### Redis客户端可视化RedisManager
 ##### Mysql客户端可视化Navicat

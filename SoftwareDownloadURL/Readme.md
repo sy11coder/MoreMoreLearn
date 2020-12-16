@@ -14,6 +14,7 @@
 ##### 14、[油猴插件下载地址](https://www.chrome666.com/chrome-extension/tampermonkey.html)  ， [Greasy Fork各种油猴插件脚本](https://greasyfork.org/zh-CN/scripts?q=)
 ##### 15、[Switchyomega管理代理下载地址](https://www.chrome666.com/chrome-extension/proxy_switchyomega.html)
 ##### 16、[各种谷歌插件下载地址](https://www.chrome666.com/?s=) 
+##### 17、[Fiddler下载地址](https://www.telerik.com/download/fiddler)
 ##### Mongodb客户端可视化MongoChef
 ##### Redis客户端可视化RedisManager
 ##### Mysql客户端可视化Navicat

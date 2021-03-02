@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据展示</title>
+    {% load static %}
+    <script src="{% static 'bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href= "{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+</head>
+<body>
+<h1 class="text-center">数据展示</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user_obj in user_queryset %}
+                        <tr>
+                            <td>{{ user_obj.id }}</td>
+                            <td>{{ user_obj.username }}</td>
+                            <td>{{ user_obj.password }}</td>
+                            <td>
+                                <a href="/edit_user/?user_id={{ user_obj.id }}" class="btn btn-primary btn-xs">编辑</a>
+                                <a href="/delete_user/?user_id={{ user_obj.id }}" class="btn btn-danger btn-xs">删除</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

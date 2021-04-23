@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <script src="{% static 'bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/mysetup.js' %}"></script>
+    <link rel="stylesheet" href= "{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center">注册</h1>
+            <form id="myform">  <!--这里我们不用form表单提交数据 单纯的用一下form标签而已-->
+                {% csrf_token %}
+                {% for form in form_obj %}
+                    <div class="form-group">
+                        <label for="{{ form.auto_id }}">{{ form.label }}</label>
+                        {{ form }}
+                        <span style="color: red" class="pull-right"></span>
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="myfile">头像
+                        {% load static %}
+                        <img src="{% static 'img/default.png' %}" id='myimg' alt="" width="100" style="margin-left: 10px">
+                    </label>
+                    <input type="file" id="myfile" name="avatar" style="display: none" >
+                </div>
+                <input type="button" class="btn btn-primary pull-right" value="注册" id="id_commit">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1、头像实时展示
+    $("#myfile").change(function () {
+        // 文件阅读器对象
+        // 1 先生成一个文件阅读器对象
+        let myFileReaderObj = new FileReader();
+        // 2 获取用户上传的头像文件
+        let fileObj = $(this)[0].files[0];
+        // 3 将文件对象交给阅读器对象读取
+        myFileReaderObj.readAsDataURL(fileObj)  // 异步操作  IO操作
+        // 4 利用文件阅读器将文件展示到前端页面  修改src属性
+        // 等待文件阅读器加载完毕之后再执行
+        myFileReaderObj.onload = function(){
+             $('#myimg').attr('src',myFileReaderObj.result)
+        }
+    })
+
+    // 2、发送ajax请求, 我们发送的数据中即包含普通的键值也包含文件
+    $('#id_commit').click(function () {
+        let formDataObj = new FormData();
+        // 1.添加普通的键值对
+        {#console.log($('#myform').serializeArray())  // [{},{},{},{},{}]  只包含普通键值对#}
+        $.each($('#myform').serializeArray(),function (index,obj) {
+            formDataObj.append(obj.name,obj.value)   {#console.log(index,obj)#}  // obj = {}
+        });
+        // 2.添加文件数据
+        formDataObj.append('avatar',$('#myfile')[0].files[0]);
+        // 3.发送ajax请求
+        $.ajax({
+            url:"",
+            type:'post',
+            data:formDataObj,
+            contentType:false,
+            processData:false,
+            success:function (args) {
+                if (args.code===1000){
+                    // 跳转到登陆页面
+                    window.location.href = args.url
+                }else{
+                    // 如何将对应的错误提示展示到对应的input框下面, forms组件渲染的标签的id值都是 id_字段名
+                    $.each(args.msg,function (index,obj) {
+                        {#console.log(index,obj)  //  username ["用户名不能为空"]#}
+                        let targetId = '#id_' + index;
+                        $(targetId).next().text(obj[0]).parent().addClass('has-error')
+                    })
+                }
+            }
+        })
+    })
+
+    // 3、给所有的input框绑定获取焦点事件
+    $('input').focus(function () {
+        // 将input下面的span标签和input外面的div标签修改内容及属性
+        $(this).next().text('').parent().removeClass('has-error')
+    })
+</script>
+</body>
+</html>

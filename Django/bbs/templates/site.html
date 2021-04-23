@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <ul class="media-list">
+            {% for article_obj in article_list %}
+                <li class="media">
+                    <h4 class="media-heading"><a href="/{{ username }}/article/{{ article_obj.pk }}/">{{ article_obj.title }}</a></h4>
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="/media/{{ article_obj.blog.userinfo.avatar }}" alt="..." width="80">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                        {{ article_obj.desc }}
+                    </div>
+{#                posted @ 2015-10-20 01:02 武沛齐 阅读(68527) 评论(24) 推荐(58) 编辑)#}
+                <div class="pull-right">
+                    <span>posted&nbsp;&nbsp;</span>
+                    <span>@&nbsp;&nbsp;</span>
+                    <span>{{ article_obj.create_time|date:'Y-m-d' }}&nbsp;&nbsp;</span>
+                    <span>{{ article_obj.blog.userinfo.username }}&nbsp;&nbsp;</span>
+                    <span><span class="glyphicon glyphicon-comment"></span>评论({{ article_obj.comment_num }})&nbsp;&nbsp;</span>
+                    <span><span class="glyphicon glyphicon-thumbs-up"></span>点赞({{ article_obj.up_num }})</span>
+                    <span><a href="#">编辑</a></span>
+                </div>
+                  </li>
+                <hr>
+            {% endfor %}
+
+        </ul>
+{% endblock %}

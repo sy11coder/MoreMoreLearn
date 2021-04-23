@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <script src="{% static 'bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/mysetup.js' %}"></script>
+    <link rel="stylesheet" href= "{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h1 class="text-center">登陆</h1>
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">验证码</label>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="code" id="id_code" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="/get_code/" alt="" width="430" height="35" id="id_img">
+                    </div>
+                </div>
+
+            </div>
+            <input type="button" class="btn btn-success" value="登陆" id="id_commit">
+            <span style="color: red" id="error"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 实时切换验证码
+    $("#id_img").click(function () {
+        // 1 先获取标签之前的src
+        let oldVal = $(this).attr('src');
+        $(this).attr('src',oldVal += '?')
+    })
+
+    // 点击按钮发送ajax请求
+    $("#id_commit").click(function () {
+        $.ajax({
+            url:'',
+            type:'post',
+            data:{
+                'username':$('#username').val(),
+                'password':$('#password').val(),
+                'code':$('#id_code').val()
+            },
+            success:function (args) {
+                if (args.code === 1000){
+                    // 跳转到首页
+                    window.location.href = args.url
+                }else{
+                    // 渲染错误信息
+                    $('#error').text(args.msg)
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/media/css/{{ blog.site_theme }}/">
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">{{ blog.site_title }}</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">博客 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">文章</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+          {% if request.user.is_authenticated %}
+                <li><a href="#">{{ request.user.username }}</a></li>
+                <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">更多操作 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">修改密码</a></li>
+            <li><a href="/set/avatar/">修改头像</a></li>
+            <li><a href="/backend/">后台管理</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'logout' %}">退出登陆</a></li>
+          </ul>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <h1 class="text-center">修改密码</h1>
+                  <div class="row">
+                      <div class="col-md-8 col-md-offset-2">
+                          <div class="form-group">
+                              <label for="">用户名</label>
+                              <input type="text" disabled value="{{ request.user.username }}" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="">原密码</label>
+                              <input type="password" id="id_old_password" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="">新密码</label>
+                              <input type="password" id="id_new_password" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="">确认密码</label>
+                              <input type="password" id="id_confirm_password" class="form-control">
+                          </div>
+                          <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                          <button class="btn btn-primary" id="id_edit">修改</button>
+                              <span style="color: red" id="password_error"></span>
+                          </div>
+                          <br>
+                          <br>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </li>
+          {% else %}
+                <li><a href="{% url 'reg' %}">注册</a></li>
+                <li><a href="{% url 'login' %}">登陆</a></li>
+          {% endif %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            {% load mytag %}
+            {% left_menu username %}
+        </div>
+        <div class="col-md-9">
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

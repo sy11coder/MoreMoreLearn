@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h3 class="text-center">修改头像</h3>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            原头像:
+            <img src="/media/{{ request.user.avatar }}" alt="">
+        </p>
+        <p>
+
+            <label for="myfile">新头像:
+                        {% load static %}
+            <img src="{% static 'img/default.png' %}" id='myimg' alt="" width="100" style="margin-left: 10px">
+                    </label>
+            <input type="file" id="myfile" name="avatar" style="display: none" >
+
+        </p>
+        <input type="submit" class="btn btn-info">
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script>
+    $("#myfile").change(function () {
+        // 文件阅读器对象
+        // 1 先生成一个文件阅读器对象
+        let myFileReaderObj = new FileReader();
+        // 2 获取用户上传的头像文件
+        let fileObj = $(this)[0].files[0];
+        // 3 将文件对象交给阅读器对象读取
+        myFileReaderObj.readAsDataURL(fileObj)  // 异步操作  IO操作
+        // 4 利用文件阅读器将文件展示到前端页面  修改src属性
+        // 等待文件阅读器加载完毕之后再执行
+        myFileReaderObj.onload = function(){
+             $('#myimg').attr('src',myFileReaderObj.result)
+        }
+    })
+    </script>
+{% endblock %}

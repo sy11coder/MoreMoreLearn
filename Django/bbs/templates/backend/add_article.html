@@ -1,0 +1,50 @@
+{% extends 'backend/backend_base.html' %}
+
+
+{% block article %}
+    <h3>添加文章</h3>
+    {#    直接利用form表单提交数据#}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>标题</p>
+        <div>
+            <input type="text" name="title" class="form-control">
+        </div>
+        <p>内容</p>
+        <div>
+            <textarea name="content" id="id_content" cols="30" rows="10"></textarea>
+        </div>
+        <p>分类</p>
+        <div>
+            {% for category in category_list %}
+                <input type="radio" value="{{ category.pk }}" name="category">{{ category.name }}
+            {% endfor %}
+
+        </div>
+        <p>标签</p>
+        <div>
+            {% for tag in tag_list %}
+                <input type="checkbox" value="{{ tag.pk }}" name="tag">{{ tag.name }}
+            {% endfor %}
+        </div>
+        <input type="submit" class="btn btn-danger">
+    </form>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script charset="utf-8" src="{% static 'kindeditor/kindeditor-all-min.js' %}"></script>
+    <script>
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#id_content', {
+                width: '100%',
+                height: '600px',
+                resizeType:1,
+                uploadJson : '/upload_image/',  // 上传图片的后端提交路径
+                extraFileUploadParams : {'csrfmiddlewaretoken':'{{ csrf_token }}'
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

@@ -58,7 +58,7 @@ app.get("/jkip", async (req, res) =>{
         res.status(500).send('Internal Server Error');
   }
 });
-// lat_lng的js文件请求： http://127.0.0.1:8444/md5
+// lat_lng的js文件请求： http://127.0.0.1:8444/lj_enc
 app.post("/lj_enc", async (req, res) =>{
     try {
         var lant =  req.body;

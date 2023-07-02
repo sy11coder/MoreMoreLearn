@@ -2,7 +2,7 @@
 # @Time : 2023/7/2
 # @Author: sy
 # @公众号: 逆向OneByOne
-# @desc: express接口调用案例
+# @desc: express接口调用案例; vsjyjy 注：CSDN交流
 import requests
 from loguru import logger
 logger.add('express_api.log', encoding='utf-8')
@@ -14,6 +14,7 @@ lat_lng = {
     "num": 12
 }
 url = f"http://127.0.0.1:8444/lj_enc"
+# url = f"http://101.37.149.41:8444/lj_enc"
 resp = requests.post(url, data=lat_lng, timeout=10)
 logger.success(f"req_response {resp.text}")
 
